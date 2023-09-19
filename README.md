@@ -14,6 +14,8 @@ Our aim is to provide a freely accessible dataset, which would facilitate resear
 such as the AI-aided detection and classification of auricle deformities and medical risk analysis. 
 
 ## Contact information
-Any questions, please
+Any questions, please contact
+
 Liu-Jie Ren, Email: renliujie@fudan.edu.cn 
+
 Eye & ENT Hospital, Fudan University, Shanghai, China
