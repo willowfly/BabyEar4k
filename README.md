@@ -1,6 +1,8 @@
 # BabyEar4k
 An image dataset of newborn ears for detecting auricle deformities
 
+![image text](https://github.com/willowfly/BabyEar4k/blob/main/babyEar4k.png?raw=true)
+
 ## Introduction to the dataset
 Early and accurate diagnosis of ear deformity in newborns is crucial for an effective corrective treatment, 
 since this commonly seen ear anomalies would affect aesthetics and cause mental problems if untreated. 
