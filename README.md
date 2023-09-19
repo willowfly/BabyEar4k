@@ -21,6 +21,6 @@ A techniqual paper of the dataset has already been submitted to a journal. We wo
 ## Contact information
 Any questions, please contact
 
-Liu-Jie Ren, Email: renliujie@fudan.edu.cn 
-
+Liu-Jie Ren, Email: renliujie@fudan.edu.cn <br/>
+Yao-Yao Fu, Email: fuyaoyao2007@126.com <br/>
 Eye & ENT Hospital, Fudan University, Shanghai, China
