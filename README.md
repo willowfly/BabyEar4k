@@ -13,6 +13,9 @@ The dataset also contains medical diagnosis of the ear shape, and the health dat
 Our aim is to provide a freely accessible dataset, which would facilitate researches related with ear anatomies, 
 such as the AI-aided detection and classification of auricle deformities and medical risk analysis. 
 
+## Details of the dataset
+A techniqual paper of the dataset has already been submitted to a journal. We would update the information after the publication.
+
 ## Contact information
 Any questions, please contact
 
