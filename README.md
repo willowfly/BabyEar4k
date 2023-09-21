@@ -17,6 +17,10 @@ such as the AI-aided detection and classification of auricle deformities and med
 
 ## Details of the dataset
 A techniqual paper of the dataset has already been submitted to a journal. We would update the information after the publication.
+And the dataset would be uploaded then. 
+
+## Codes
+Here we provided the code used for data analysis in the publication. Please refer to 'Brief instruction.docx' for introduction of the code.
 
 ## Contact information
 Any questions, please contact
