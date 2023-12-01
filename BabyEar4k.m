@@ -5,7 +5,9 @@ properties
     imageFolder = './BabyEar4k/images/';    % folder for the images
     Maxid = 2000;                           % maximum id for the babies
     diag                                    % matlab table - the diagnosis
-    health                                  % matlab table - health data 
+    health                                  % matlab table - health data
+    bounding                                % matlab table - bounding information
+    quality                                 % matlab table - image quality 
     resExp01                                % expert 01 diagnosis - matrix
     resExp02                                % expert 01 diagnosis - matrix
     resMerge                                % consensus diagnosis - matrix 
@@ -18,6 +20,8 @@ methods
         % read in the results 
         obj.diag = readtable([obj.folder,'diagnosis_result.csv']);
         obj.health = readtable([obj.folder,'health_data.csv']);
+        obj.bounding = readtable([obj.folder,'bounding.csv']);
+        obj.quality = readtable([obj.folder,'image_quality_assessment.csv']);
         % renew the id, resExp01, resExp02, resMerge properties
         obj.id = table2array(obj.diag(:,1));
         obj.resExp01 = obj.analysisDiagnosisResult(4,5);
@@ -44,13 +48,23 @@ methods
             pathL = obj.diag{ii,2}{1};
             pathR = obj.diag{ii,3}{1};
             if flag(ii,1)==1
-                im = imread( [obj.folder(1:end-1),pathL] ); 
-                im = rgb2gray(im); im = imresize(im,[400,300]);
+                im = imread( [obj.folder(1:end-1),pathL] );
+                b1 = obj.bounding.left_bound(2*ii-1);
+                b2 = obj.bounding.top_bound(2*ii-1);
+                b3 = obj.bounding.right_bound(2*ii-1);
+                b4 = obj.bounding.bottom_bound(2*ii-1);
+                im = rgb2gray(im); im = im([b2:b4],[b1:b3]);
+                im = imresize(im,[400,300]);
                 img = img+double(im)/255;
             end
             if flag(ii,2)==1
                 im = imread( [obj.folder(1:end-1),pathR] ); 
-                im = rgb2gray(im); im = imresize(im,[400,300]);
+                b1 = obj.bounding.left_bound(2*ii);
+                b2 = obj.bounding.top_bound(2*ii);
+                b3 = obj.bounding.right_bound(2*ii);
+                b4 = obj.bounding.bottom_bound(2*ii);
+                im = rgb2gray(im); im = im([b2:b4],[b1:b3]);
+                im = imresize(im,[400,300]);
                 im = fliplr(im); 
                 img = img+double(im)/255;
             end
@@ -68,111 +82,7 @@ methods
             res(ii,:) = [L,R];
         end
     end
-
     
-    function [img,idx] = averageLopEar(obj)
-        img = 0; idx = 0;
-        for ii = 1:size(obj.diag,1)
-            L = obj.res(ii,2:4);
-            R = obj.res(ii,5:7);
-            pathL = obj.diag{ii,2};
-            pathR = obj.diag{ii,3};
-            if L(1)==1
-                im = imread([obj.folder(1:end-1),pathL]);
-                im = rgb2gray(im);
-                im = imresize(im,[400,300]);
-                img = img+double(im)/255;
-                idx = idx+1;
-            end
-            if R(1)==1
-                im = imread([obj.folder(1:end-1),pathR]);
-                im = rgb2gray(im);
-                im = imresize(im,[400,300]);
-                im = fliplr(im);
-                img = img+double(im)/255;
-                idx = idx+1;
-            end
-        end
-        img = img/idx;
-        img = improcess(img);
-    end
-    function [img,idx] = averageHelicalEar(obj)
-        img = 0; idx = 0;
-        for ii = 1:size(obj.diag,1)
-            L = obj.res(ii,2:4);
-            R = obj.res(ii,5:7);
-            pathL = obj.diag{ii,2};
-            pathR = obj.diag{ii,3};
-            if L(1)==3
-                im = imread([obj.folder(1:end-1),pathL]);
-                im = rgb2gray(im);
-                im = imresize(im,[400,300]);
-                img = img+double(im)/255;
-                idx = idx+1;
-            end
-            if R(1)==3
-                im = imread([obj.folder(1:end-1),pathR]);
-                im = rgb2gray(im);
-                im = imresize(im,[400,300]);
-                im = fliplr(im);
-                img = img+double(im)/255;
-                idx = idx+1;
-            end
-        end
-        img = img/idx;
-        img = improcess(img);
-    end
-    function [img,idx] = averageStahlEar(obj)
-        img = 0; idx = 0;
-        for ii = 1:size(obj.diag,1)
-            L = obj.res(ii,2:4);
-            R = obj.res(ii,5:7);
-            pathL = obj.diag{ii,2};
-            pathR = obj.diag{ii,3};
-            if L(1)==2
-                im = imread([obj.folder(1:end-1),pathL]);
-                im = rgb2gray(im);
-                im = imresize(im,[400,300]);
-                img = img+double(im)/255;
-                idx = idx+1;
-            end
-            if R(1)==2
-                im = imread([obj.folder(1:end-1),pathR]);
-                im = rgb2gray(im);
-                im = imresize(im,[400,300]);
-                im = fliplr(im);
-                img = img+double(im)/255;
-                idx = idx+1;
-            end
-        end
-        img = img/idx; img = improcess(img);
-    end
-    
-    function [img,idx] = averageEar(obj,a,b)
-        img = 0; idx = 0;
-        for ii = 1:size(obj.diag,1)
-            L = obj.res(ii,2:4);
-            R = obj.res(ii,5:7);
-            pathL = obj.diag{ii,2};
-            pathR = obj.diag{ii,3};
-            if L(a)==b
-                im = imread([obj.folder(1:end-1),pathL]);
-                im = rgb2gray(im);
-                im = imresize(im,[400,300]);
-                img = img+double(im)/255;
-                idx = idx+1;
-            end
-            if R(a)==b
-                im = imread([obj.folder(1:end-1),pathR]);
-                im = rgb2gray(im);
-                im = imresize(im,[400,300]);
-                im = fliplr(im);
-                img = img+double(im)/255;
-                idx = idx+1;
-            end
-        end
-        img = img/idx; img = improcess(img);
-    end
     
     function s = imSize(obj)
         s = zeros(2*size(obj.diag,1),2);
@@ -190,6 +100,17 @@ methods
         end
     end
     
+    function res = getRes(obj)
+        res = zeros( size(obj.diag,1), 6 );
+        Lres = obj.diag.L_merge;
+        Rres = obj.diag.R_merge;
+        for kk = 1:size(obj.diag,1)
+            L = diagnosisStr2num(Lres{kk});
+            R = diagnosisStr2num(Rres{kk});
+            res(kk,:) = [L R];
+        end 
+    end 
+
 end
 
 end
