@@ -16,8 +16,7 @@ Our aim is to provide a freely accessible dataset, which would facilitate resear
 such as the AI-aided detection and classification of auricle deformities and medical risk analysis. 
 
 ## Details of the dataset
-A techniqual paper of the dataset has already been submitted to a journal. We would update the information after the publication.
-And the dataset would be uploaded then. 
+A techniqual paper of the dataset, entitled "A publicly available newborn ear shape dataset for medical diagnosis of auricular deformities", has already been accepted by Scientific Data (https://www.nature.com/sdata/).
 
 ## Codes
 Here we provided the code used for data analysis in the publication. Please refer to 'Brief instruction.docx' for introduction of the code.
