@@ -18,6 +18,13 @@ such as the AI-aided detection and classification of auricle deformities and med
 ## Details of the dataset
 A techniqual paper of the dataset, entitled "A publicly available newborn ear shape dataset for medical diagnosis of auricular deformities", has already been accepted by Scientific Data (https://www.nature.com/sdata/).
 
+Ren, LJ., Luo, F., Yang, ZW. et al. A publicly available newborn ear shape dataset for medical diagnosis of auricular deformities. Sci Data 11, 13 (2024). https://doi.org/10.1038/s41597-023-02834-4
+
+## How to download the dataset
+The dataset is available at figShare. 
+
+Ren, LJ. et al. A publicly available newborn ear shape dataset for medical diagnosis of auricle deformities, figshare, https://doi.org/10.6084/m9.figshare.c.6841596.v1 (2023).
+
 ## Codes
 Here we provided the code used for data analysis in the publication. Please refer to 'Brief instruction.docx' for introduction of the code.
 
